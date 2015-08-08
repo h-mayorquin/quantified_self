@@ -11,4 +11,3 @@ weekday = time_stamp.isoweekday()
 day = time_stamp.day
 month = time_stamp.month
 year = time_stamp.year
-

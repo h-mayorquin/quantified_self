@@ -1,12 +1,11 @@
-from pandas import Series
 from pandas import DataFrame
 import pandas as pd
 from datetime import datetime
 from numpy import nan
 import os.path as path
-import sys 
+import sys
 
-# So first we need the extract the datea of this moment
+# So first we need the extract the data of this moment
 
 time_stamp = datetime.now()
 
@@ -19,7 +18,6 @@ hours = time_stamp.hour
 minutes = time_stamp.minute
 action = sys.argv[1]
 
-obj = Series([4, 7, -5, 3])
 
 # Create the frame
 filename = './data_frame_test.pickle'
