@@ -1,0 +1,14 @@
+How to make a script executable as taken from StackOverflow:
+
+http://stackoverflow.com/questions/15587877/run-a-python-script-in-terminal-without-the-python-command
+
+ou use a shebang line at the start of your script:
+
+#!/usr/local/bin/env python   (Change this because of suggestions in other SO post)
+make the file executable:
+
+chmod +x arbitraryname
+and put it in a directory on your PATH (can be a symlink):
+
+cd ~/bin/
+ln -s ~/some/path/to/myscript/arbitraryname

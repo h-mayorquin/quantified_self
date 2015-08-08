@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from pandas import DataFrame
 import pandas as pd
 from datetime import datetime
@@ -33,7 +35,9 @@ possible_actions = actions_dic_hours
 assert(action in possible_actions)
 
 # Load the date frame
-filename = './time_data_base.pickle'
+file_path = '/home/heberto/Dropbox/'
+name = 'time_data_base.pickle'
+filename = file_path + name
 db = pd.read_pickle(filename)
 # Check and get the date of the last index
 
