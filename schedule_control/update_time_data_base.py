@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 
-from pandas import DataFrame
 import pandas as pd
 from datetime import datetime
 from numpy import nan
-import os.path as path
 import sys
 
 # So first we need the extract the data of this moment
@@ -54,6 +52,8 @@ if (date == today_date):
     index_to_add = max_index
 else:
     index_to_add = max_index + 1
+    # Add new date
+    db.loc[index_to_add, 'Date'] = today_date
 
 
 # Add the data
