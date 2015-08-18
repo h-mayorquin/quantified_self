@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 from numpy import nan
 import sys
 
@@ -43,15 +43,28 @@ if db.index.max() is nan:
     max_index = 0
 else:
     max_index = db.index.max()
-    date = db.loc[max_index]['Date']
+    last_date = db.loc[max_index]['Date']
 
 today_date = datetime(year, month, day)
 
-# Check if this is a new day
-if (date == today_date):
+# Print the dates that are going to be modified
+print db.tail()
+print 'The last date on the data base is', last_date
+print 'The newest day on the data base is', today_date
+
+# Check if this should be new data
+
+if (last_date == today_date):
     index_to_add = max_index
 else:
-    index_to_add = max_index + 1
+    # Add al the missing dates
+    delta_day = timedelta(days=1)
+    index_to_add = max_index 
+    while(last_date != today_date):
+        last_date += delta_day
+        index_to_add += 1
+        db.loc[index_to_add, 'Date'] = last_date
+
     # Add new date
     db.loc[index_to_add, 'Date'] = today_date
 
