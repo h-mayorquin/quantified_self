@@ -47,7 +47,7 @@ else:
 
 today_date = datetime(year, month, day)
 
-# Check if this should be new data
+# Check if this is a new day
 if (date == today_date):
     index_to_add = max_index
 else:
@@ -55,12 +55,17 @@ else:
     # Add new date
     db.loc[index_to_add, 'Date'] = today_date
 
-
-# Add the data
+# In order to introduce waking up time
 if action == 'wake':
     hours = float(input('input the hour that you woke up (8, 9, 10, etc...) '))
     minutes = float(input('input the minutes (10, 17, 23, 44, ... etc) '))
 
+# If forgot to run work or leave on time, any second argument modifies
+if len(sys.argv) >  2: 
+    hours = float(input('input the hour that of your ' + action + ' (8, 9, 10, etc) '))    
+    minutes = float(input('input the minutes of your ' +  action + ' (10, 17, 23, 44, etc) '))
+
+# Add the data to the db
 action_hour = actions_dic_hours[action]
 action_minutes = actions_dic_minutes[action]
 db.loc[index_to_add, action_hour] = hours
@@ -68,7 +73,7 @@ db.loc[index_to_add, action_minutes] = minutes
 
 # Show frame
 print 'The last elements of the data base'
-print db[-5:]
+print db.tail()
 
 # Save the frame
 db.to_pickle(filename)

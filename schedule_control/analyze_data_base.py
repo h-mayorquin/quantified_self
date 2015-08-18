@@ -29,7 +29,6 @@ def get_complete_time(db, action, actions_dic_hours, actions_dic_minutes):
 
     return time
 
-
 time = get_complete_time(db, action, actions_dic_hours, actions_dic_minutes)
 mean = time.mean()
 minutes = (mean - int(mean)) * 60.0
