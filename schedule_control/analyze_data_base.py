@@ -1,5 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from aux_functions import get_complete_time
+from aux_functions import actions_dic_hours, actions_dic_time
+from aux_functions import actions_dic_minutes
+
 
 # Load the data base
 file_path = '/home/heberto/Dropbox/'
@@ -7,30 +11,12 @@ name = 'time_data_base.pickle'
 filename = file_path + name
 db = pd.read_pickle(filename)
 
-# Dictionary of actions
-actions_dic_hours = {'wake': 'Woke Up Hours', 'work': 'Arrived Hours',
-                     'leave': 'Left Work Hours'}
+# Print the total mean for the three quantities
+print 'Total mean over time'
+print 'Wake Up ', db['Woke Up Time'].mean()
+print 'Work ', db['Arrived Time'].mean()
+print 'Leave', db['Left Work Time'].mean()
 
-actions_dic_minutes = {'wake': 'Woke Up Minutes',
-                       'work': 'Arrived Minutes',
-                       'leave': 'Left Work Minutes'}
+# Print the 30 days mean for the three quantities
 
-
-# Actions
-action = 'wake'
-
-
-def get_complete_time(db, action, actions_dic_hours, actions_dic_minutes):
-
-    aux1 = actions_dic_hours[action]
-    aux2 = actions_dic_minutes[action]
-
-    time = db[aux1] + db[aux2] * 1.0 / 60.0
-
-    return time
-
-time = get_complete_time(db, action, actions_dic_hours, actions_dic_minutes)
-mean = time.mean()
-minutes = (mean - int(mean)) * 60.0
-
-print int(mean), minutes
+# Print the 7 days mean for the three quantities
