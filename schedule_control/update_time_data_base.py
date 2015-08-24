@@ -75,7 +75,7 @@ if action == 'wake':
 
 # If forgot to run work or leave on time, any second argument modifies
 if len(sys.argv) >  2: 
-    hours = float(input('input the hour that of your ' + action + ' (8, 9, 10, etc) '))    
+    hours = float(input('input the hour that of your ' + action + ' (8, 9, 10, etc) '))
     minutes = float(input('input the minutes of your ' +  action + ' (10, 17, 23, 44, etc) '))
 
 # Add the data to the db
