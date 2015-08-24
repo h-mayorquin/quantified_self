@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 
-import pandas as pd
 from datetime import datetime, timedelta
 from numpy import nan
+import pandas as pd
 import sys
+
+from aux_functions import actions_dic_hours, actions_dic_time
+from aux_functions import actions_dic_minutes
 
 # So first we need the extract the data of this moment
 
@@ -17,15 +20,6 @@ weekday = time_stamp.isoweekday()
 hours = time_stamp.hour
 minutes = time_stamp.minute
 action = sys.argv[1]
-
-# Actions
-
-actions_dic_hours = {'wake': 'Woke Up Hours', 'work': 'Arrived Hours',
-                     'leave': 'Left Work Hours'}
-
-actions_dic_minutes = {'wake': 'Woke Up Minutes',
-                       'work': 'Arrived Minutes',
-                       'leave': 'Left Work Minutes'}
 
 
 # Check that actions is wake, work or leave
@@ -59,7 +53,7 @@ if (last_date == today_date):
 else:
     # Add al the missing dates
     delta_day = timedelta(days=1)
-    index_to_add = max_index 
+    index_to_add = max_index
     while(last_date != today_date):
         last_date += delta_day
         index_to_add += 1
@@ -74,15 +68,21 @@ if action == 'wake':
     minutes = float(input('input the minutes (10, 17, 23, 44, ... etc) '))
 
 # If forgot to run work or leave on time, any second argument modifies
-if len(sys.argv) >  2: 
-    hours = float(input('input the hour that of your ' + action + ' (8, 9, 10, etc) '))
-    minutes = float(input('input the minutes of your ' +  action + ' (10, 17, 23, 44, etc) '))
+if len(sys.argv) > 2:
+    hours = float(input('input the hour that of your '
+                        + action + ' (8, 9, 10, etc) '))
+    minutes = float(input('input the minutes of your '
+                          + action + ' (10, 17, 23, 44, etc) '))
+
 
 # Add the data to the db
 action_hour = actions_dic_hours[action]
 action_minutes = actions_dic_minutes[action]
+action_time = actions_dic_time[action]
+
 db.loc[index_to_add, action_hour] = hours
 db.loc[index_to_add, action_minutes] = minutes
+db.loc[index_to_add, action_time] = hours + minutes * 1.0 / 60.0
 
 # Show frame
 print 'The last elements of the data base'
