@@ -74,6 +74,7 @@ if len(sys.argv) > 2:
     minutes = float(input('input the minutes of your '
                           + action + ' (10, 17, 23, 44, etc) '))
 
+
 # Add the data to the db
 action_hour = actions_dic_hours[action]
 action_minutes = actions_dic_minutes[action]
