@@ -4,11 +4,11 @@ http://stackoverflow.com/questions/15587877/run-a-python-script-in-terminal-with
 
 ou use a shebang line at the start of your script:
 
-#!/usr/local/bin/env python   (Change this because of suggestions in other SO post)
+#!/usr/local/bin/env python2   (Change this because of suggestions in other SO post)
 make the file executable:
 
 chmod +x arbitraryname
 and put it in a directory on your PATH (can be a symlink):
 
-cd ~/bin/
+cd /usr/bin/
 ln -s ~/some/path/to/myscript/arbitraryname

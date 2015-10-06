@@ -1,3 +1,5 @@
+#!/usr/bin/env python2
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from aux_functions import get_complete_time
